@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider, redirect } from 'react-router-dom'
-import Layout from './components/layout'
+import Layout from './components/Layout'
 import * as posts from './posts'
 
 const defaultLoader = () => redirect('/muyan')
