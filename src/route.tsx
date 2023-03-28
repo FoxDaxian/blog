@@ -1,10 +1,32 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Muyan from './posts/Muyan.mdx'
+import { createBrowserRouter, RouterProvider, redirect } from 'react-router-dom'
+import Layout from './components/layout'
+import * as posts from './posts'
 
-const router = createBrowserRouter([
+const defaultLoader = () => redirect('/muyan')
+
+export const postsRoute = Object.keys(posts).map((key) => {
+    const Post = posts[key as keyof typeof posts]
+    return {
+        path: key.toLocaleLowerCase(),
+        element: <Post />,
+    }
+})
+
+export const router = createBrowserRouter([
     {
         path: '/',
-        element: <Muyan />,
+        element: <Layout postsRoute={postsRoute} />,
+        children: [
+            {
+                index: true,
+                loader: defaultLoader,
+            },
+            ...postsRoute,
+            // {
+            //     path: '*',
+            //     loader: defaultLoader,
+            // },
+        ],
     },
 ])
 

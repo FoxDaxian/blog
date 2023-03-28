@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import RouterEnter from './route'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './route'
 import './assets/css/index.css'
-
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
-        <RouterEnter />
+        <RouterProvider router={router} />
     </React.StrictMode>
 )
